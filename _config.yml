@@ -1,7 +1,7 @@
 # Site settings
-title:       @AllContent
+title:       AllContent
 email:       your_email@example.com
-author:      @AllContent
+author:      AllContent
 description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
 baseurl:     ""
 url:         "https://allcontent.in"
