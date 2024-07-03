@@ -1,10 +1,10 @@
 # Site settings
-title:       Pixyll
+title:       @AllContent
 email:       your_email@example.com
-author:      John Otander
+author:      @AllContent
 description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
 baseurl:     ""
-url:         "https://pixyll.com"
+url:         "https://allcontent.in"
 date_format: "%b %-d, %Y"
 header_pages:
  - about.md
@@ -21,7 +21,7 @@ bing_verification:
 
 # Optional features
 animated:             false
-show_related_posts:   false
+show_related_posts:   true
 show_post_footers:    false
 show_social_icons:    false
 ajaxify_contact_form: false
