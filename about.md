@@ -5,6 +5,9 @@ permalink: /about/
 tags: about
 ---
 
-Checkout the [GitHub repository](https://github.com/johno/pixyll) to download it,
-request a feature, report a bug, or contribute. It's free, and open source
-([MIT](https://opensource.org/licenses/MIT)).
+<h3>{{ site.author }}</h3>
+<p>
+Experienced e-commerce website developer with deep industry knowledge.
+Skilled in creating tailored, high-performing online shopping platforms to drive
+business growth and enhance user experience.
+</p>
