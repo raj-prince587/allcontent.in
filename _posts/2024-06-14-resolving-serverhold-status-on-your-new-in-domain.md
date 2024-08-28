@@ -24,12 +24,13 @@ Your domain can be placed into a "server hold status" by the domain's registry. 
  * Contact to the NIXI helpdesk
  * Raise a complaint at [CPGRAMS](https://pgportal.gov.in/)
 
- #### Contact the domain seller
+#### Contact the domain seller
  Start by contacting the domain seller to seek assistance in resolving the DNS issue. If the matter remains unresolved, you can explore other options.
  
- #### Contact to the NIXI helpdesk
+#### Contact to the NIXI helpdesk
  Reach out to the NIXI helpdesk at nixi.in and provide them with your KYC documents, ensuring that the contact details associated with your domain match the information on the provided documents.
 
-
- #### Raise a complaint at CPGRAMS
+#### Raise a complaint at CPGRAMS
  If the NIXI helpdesk is unable to resolve the issue, you have the option to file a complaint on the [CPGRAMS](https://pgportal.gov.in/) portal using the provided URL. This will allow you to seek further assistance and resolution for the problem at hand.
+ Raise complaing under the following category:
+ Electronics & Information Technology > Internet Governance/IP/DNS > Domain Name System (DNS) > DNS Security, DNS Abuse Policies of .IN
