@@ -2,7 +2,7 @@
 layout: post
 title: Understanding the Different Variants of Magento Open Source and Adobe Commerce
 date: 2025-06-02 20:10:28
-categories: [E-Commerce, Magento, Adobe Commerce]
+categories: Magento Adobe Commerce
 tags: [Magento, Adobe Commerce, eCommerce, SaaS, PaaS]
 ---
 
