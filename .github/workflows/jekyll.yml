@@ -1,37 +1,39 @@
-name: GitHub Pages
+name: Deploy Jekyll site to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # or your default branch
+      - master  # Trigger the action on pushes to the main branch
   pull_request:
     branches:
-      - master  # or your default branch
+      - master  # Optionally trigger on pull requests to main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Run on an Ubuntu machine
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Check out the repository code
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1  # Set up Ruby (since Jekyll is Ruby-based)
         with:
-          ruby-version: '2.7'  # or the version you're using
+          ruby-version: 3.1  # Set Ruby version (adjust according to your setup)
 
       - name: Install dependencies
         run: |
-          gem install jekyll
-          gem install bundler
-          bundle install
+          gem install jekyll bundler  # Install Jekyll and Bundler
+          bundle install  # Install dependencies from Gemfile
 
-      - name: Build site
-        run: bundle exec jekyll build
+      - name: Build the Jekyll site
+        run: |
+          bundle exec jekyll build  # Build the Jekyll site into _site folder
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4  # Deploy action
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          branch: gh-pages  # Deploy to gh-pages branch
+          folder: _site  # Folder where the built site is located
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token to push changes
