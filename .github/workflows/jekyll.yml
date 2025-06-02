@@ -33,7 +33,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4  # Deploy action
         with:
-          branch: gh-pages  # Deploy to gh-pages branch
+          branch: master  # Deploy to gh-pages branch
           folder: _site  # Folder where the built site is located
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token to push changes
