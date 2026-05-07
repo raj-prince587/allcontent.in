@@ -12,10 +12,6 @@ image: /splash-512x512.png
 
 When a domain is placed in ServerHold status by its registry, it is effectively suspended and deactivated from the Domain Name System (DNS). This renders the domain inaccessible, impacting websites, email services, and other online functionalities tied to it. If your domain is in this state, you’ll need to take specific steps to resolve the issue, often involving direct communication with the registry or other relevant authorities. This article explains the causes of ServerHold status, its implications, and a detailed guide to restoring your domain.
 
-### What is ServerHold Status?
-
-ServerHold is a status imposed by a domain registry, not the registrar, which removes the domain from the global DNS. Unlike issues managed through your registrar (e.g., domain expiration or renewal disputes), ServerHold is enforced at the registry level, meaning the domain is entirely deactivated until the issue is resolved. Websites, email services, or any services relying on the domain will cease to function, resulting in downtime and potential business disruption.
-
 ---
 
 ### Common Reasons for ServerHold Status
