@@ -1,53 +1,55 @@
 a {
-  color: $link-color;
-  background-image: linear-gradient(to top,
-    rgba(0,0,0,0) 13%,
-    rgba($link-color,.8) 13%,
-    rgba($link-color,.8) 18%,
-    rgba(0,0,0,0) 17%
-  );
-  text-shadow: white 1px 0px 0px, white -1px 0px 0px;
+  color: var(--color-royal-blue);
+  text-decoration: none;
+  background-image: none;
 }
 
 a:hover,
 a:focus,
 a:active {
   border: 0;
-  color: $link-hover-color;
+  color: var(--color-teal);
   text-decoration: none;
-  background-image: linear-gradient(to top,
-    rgba(0,0,0,0) 13%,
-    rgba($link-hover-color,.8) 13%,
-    rgba($link-hover-color,.8) 17%,
-    rgba(0,0,0,0) 17%
-  );
-  text-shadow: white 1px 0px 0px, white -1px 0px 0px;
+  background-image: none;
 }
 
-// Correct issues with buttons
 button,
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  padding: .9rem 1.35rem;
+  background: var(--gradient-accent);
+  color: var(--color-dark-navy);
+  font-weight: 700;
+  line-height: 1;
   text-shadow: none;
   background-image: none;
+  box-shadow: 0 12px 30px rgba(10, 79, 214, 0.18);
 }
 
 .button:hover,
 .button:focus,
 .button:active {
-  color: white;
+  color: var(--color-teal);
+  transform: translateY(-1px);
   text-shadow: none;
   background-image: none;
 }
 
 .anchorjs-link {
-    text-shadow: none;
-    background-image: none;
+  text-shadow: none;
+  background-image: none;
 }
+
 .anchorjs-link:hover,
 .anchorjs-link:focus,
 .anchorjs-link:active{
-    border: 0;
-    color: $link-hover-color;
-    text-shadow: none;
-    background-image: none;
+  border: 0;
+  color: var(--color-teal);
+  text-shadow: none;
+  background-image: none;
 }

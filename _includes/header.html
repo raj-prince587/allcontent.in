@@ -1,14 +1,21 @@
 <header class="site-header px2 px-responsive">
-  <div class="mt2 wrap">
+  <div class="wrap">
     <div class="measure">
-      <a href="{{ "/" | relative_url }}" class="site-title">{{ site.title }}</a>
-      <nav class="site-nav">
-        {% include navigation.html %}
-      </nav>
-      <div class="clearfix"></div>
-      {% if site.show_social_icons %}
-        {% include social_links.html %}
-      {% endif %}
+      <a href="#main-content" class="skip-link">Skip to content</a>
+      <div class="site-branding">
+        <a href="{{ "/" | relative_url }}" class="site-title" aria-label="{{ site.title }} home">
+          <img src="{{ '/assets/images/logo-allcontent.png' | relative_url }}" alt="{{ site.title }}" class="site-logo">
+        </a>
+        <!-- <p class="site-tagline">{{ site.tagline }}</p> -->
+      </div>
+      <div class="site-header-actions">
+        <nav class="site-nav" aria-label="Primary navigation">
+          {% include navigation.html %}
+        </nav>
+        {% if site.show_social_icons %}
+          {% include social_links.html %}
+        {% endif %}
+      </div>
     </div>
   </div>
 </header>

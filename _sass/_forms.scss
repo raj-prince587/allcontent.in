@@ -50,18 +50,19 @@ textarea {
 }
 
 .field-light {
-  background-color: white;
+  background-color: var(--color-surface);
   transition: box-shadow .2s ease;
   border-style: solid;
   border-width: $border-width;
-  border-color: $border-color;
+  border-color: var(--color-border);
   border-radius: $border-radius;
+  color: var(--color-text-strong);
 }
 
 .field-light:focus {
   outline: none;
-  border-color: $blue;
-  box-shadow: 0 0 2px rgba($blue,.5);
+  border-color: var(--color-royal-blue);
+  box-shadow: 0 0 0 4px rgba(10, 79, 214, .12);
 }
 
 .field-light:disabled {

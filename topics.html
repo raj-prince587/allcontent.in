@@ -1,0 +1,58 @@
+---
+layout: page
+title: Topics
+permalink: /topics/
+---
+
+<div class="page-intro">
+  <p>Explore articles grouped by category and tag.</p>
+</div>
+
+{% if site.categories.size > 0 %}
+<section class="topic-section page-shell">
+  <h2>Categories</h2>
+  {% for category in site.categories %}
+  <div class="topic-group page-panel" id="{{ category[0] | slugify }}">
+    <h3>{{ category[0] }}</h3>
+    <div class="topic-group-list">
+      {% for post in category[1] %}
+      <article class="archive-item">
+        {% if post.featured %}
+        <p class="featured-badge">{{ site.text.post.featured }}</p>
+        {% endif %}
+        <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if site.tags.size > 0 %}
+<section class="topic-section page-shell">
+  <h2>Tags</h2>
+  <div class="topic-list">
+    {% for tag in site.tags %}
+    <a class="topic-chip" href="#tag-{{ tag[0] | slugify }}">{{ tag[0] }}</a>
+    {% endfor %}
+  </div>
+  {% for tag in site.tags %}
+  <div class="topic-group page-panel" id="tag-{{ tag[0] | slugify }}">
+    <h3>{{ tag[0] }}</h3>
+    <div class="topic-group-list">
+      {% for post in tag[1] %}
+      <article class="archive-item">
+        {% if post.featured %}
+        <p class="featured-badge">{{ site.text.post.featured }}</p>
+        {% endif %}
+        <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}

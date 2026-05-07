@@ -3,6 +3,11 @@
     font-size: 16px;
   }
 
+  .site-header {
+    position: sticky;
+    top: 0;
+  }
+
   h1,
   .h1 {
     font-size: $h1;
@@ -20,14 +25,65 @@
     font-size: $h4;
   }
 
+  .site-header .measure {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-branding {
+    text-align: left;
+  }
+
   .site-header .site-title {
-    font-size: $h3;
-    float: left;
+    font-size: 1.75rem;
+  }
+
+  .site-logo {
+    max-width: 176px;
+    height: 34px;
   }
 
   .site-header .site-nav {
-    float: right;
-    margin-top: .25rem;
+    margin-top: 0;
+    justify-content: flex-end;
+  }
+
+  .site-header-actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: auto;
+  }
+
+  .site-nav {
+    padding-top: 0;
+  }
+
+  .social-icons {
+    margin-top: .2rem;
+  }
+
+  .post-grid,
+  .related-posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-layout {
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, .9fr);
+    align-items: start;
+  }
+
+  .home-sidebar {
+    position: sticky;
+    top: 5rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   blockquote {
@@ -48,11 +104,27 @@
   html {
     font-size: 18px;
   }
+
+  .home-hero {
+    padding: 3rem;
+  }
+
+  .post-hero {
+    padding: 2.5rem;
+  }
+
+  .pagination {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (min-width: $viewport-large) {
   html {
     font-size: 20px;
+  }
+
+  .post-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

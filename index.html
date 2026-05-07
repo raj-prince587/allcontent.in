@@ -1,34 +1,96 @@
 ---
 layout: default
 ---
+{% assign featured_posts = site.posts | where: "featured", true %}
+{% assign featured_post = featured_posts.first %}
+{% if featured_post == nil %}
+  {% assign featured_post = site.posts.first %}
+{% endif %}
 {% assign posts_count = paginator.posts | size %}
+{% assign listing_posts = paginator.posts %}
+{% if paginator.page == 1 and featured_post %}
+  {% assign listing_posts = paginator.posts | where_exp: "post", "post.url != featured_post.url" %}
+{% endif %}
 
 <div class="home">
-  {% if posts_count > 0 %}
-    <div class="posts">
-      {% for post in paginator.posts %}
-        <div class="post py3">
-          <p class="post-meta">
-            {% if site.date_format %}
-              {{ post.date | date: site.date_format }}
-            {% else %}
-              {{ post.date | date: "%b %-d, %Y" }}
-            {% endif %}
-          </p>
-          <a href="{{ post.url | relative_url }}" class="post-link"><h3 class="h1 post-title">{{ post.title }}</h3></a>
-          <span class="post-summary">
-            {% if post.summary %}
-              {{ post.summary }}
-            {% else %}
-              {{ post.excerpt }}
-            {% endif %}
-          </span>
-        </div>
-      {% endfor %}
+  <section class="home-hero">
+    <p class="eyebrow">{{ site.text.index.featured }}</p>
+    <h1>Modern publishing for practical eCommerce and technology insight.</h1>
+    <p class="home-intro">{{ site.description }} {{ site.tagline }}</p>
+    <div class="hero-actions">
+      <a class="button" href="{{ '/archive/' | relative_url }}">Browse Articles</a>
+      <a class="secondary-link" href="{{ '/topics/' | relative_url }}">Explore Topics</a>
+    </div>
+  </section>
+
+  <div class="home-layout">
+    <div class="home-main">
+      {% if paginator.page == 1 and featured_post %}
+      <section class="featured-post-card">
+        <p class="eyebrow">{{ site.text.post.featured }}</p>
+        <p class="post-meta">{{ featured_post.date | date: site.date_format }}</p>
+        <h2><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a></h2>
+        <p class="post-summary">{{ featured_post.summary | default: featured_post.excerpt | strip_html | truncate: 240 }}</p>
+        <p><a class="button" href="{{ featured_post.url | relative_url }}">Read Featured Story</a></p>
+      </section>
+      {% endif %}
+
+      {% if site.featured_categories and site.featured_categories.size > 0 %}
+      <section class="topic-strip">
+        {% for topic in site.featured_categories %}
+        <a class="topic-chip" href="{{ '/topics/' | relative_url }}#{{ topic | slugify }}">{{ topic }}</a>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if posts_count > 0 %}
+        <section class="home-section">
+          <div class="section-heading-row">
+            <h2>{{ site.text.index.latest }}</h2>
+            <a class="secondary-link" href="{{ '/archive/' | relative_url }}">Browse archive</a>
+          </div>
+          <div class="post-grid">
+            {% for post in listing_posts %}
+            <article class="post-card">
+              {% if post.featured %}
+              <p class="featured-badge">{{ site.text.post.featured }}</p>
+              {% endif %}
+              {% if post.categories and post.categories.size > 0 %}
+              <p class="eyebrow">{{ post.categories | first }}</p>
+              {% endif %}
+              <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+              <h3><a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a></h3>
+              <p class="post-summary">{{ post.summary | default: post.excerpt | strip_html | truncate: 170 }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+
+        {% include pagination.html %}
+      {% else %}
+        <h2 class="center">{{ site.text.index.coming_soon }}</h2>
+      {% endif %}
     </div>
 
-    {% include pagination.html %}
-  {% else %}
-    <h1 class='center'>{{ site.text.index.coming_soon }}</h1>
-  {% endif %}
+    <aside class="home-sidebar" aria-label="Sidebar">
+      <section class="sidebar-widget">
+        <p class="eyebrow">Editorial Focus</p>
+        <h3>Clear, technical articles built for operators and builders.</h3>
+        <p>The theme stays content-first while surfacing topics, featured analysis, and fast navigation paths for long-form readers.</p>
+      </section>
+      <section class="sidebar-widget">
+        <p class="eyebrow">Popular Paths</p>
+        <ul>
+          <li><a href="{{ '/topics/' | relative_url }}#magento">Magento and Adobe Commerce</a></li>
+          <li><a href="{{ '/topics/' | relative_url }}#domain">Domains and DNS operations</a></li>
+          <li><a href="{{ '/search/' | relative_url }}">Search the full archive</a></li>
+        </ul>
+      </section>
+      <section class="sidebar-widget">
+        <p class="eyebrow">Work With Us</p>
+        <p>{{ site.author_bio }}</p>
+        <a class="button" href="{{ '/contact/' | relative_url }}">Start a Project</a>
+      </section>
+    </aside>
+  </div>
 </div>

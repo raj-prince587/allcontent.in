@@ -1,6 +1,20 @@
-<footer class="center">
-  <div class="measure">
-    <small>Copyright © 2024 All Content. All rights reserved.</small>
+<footer class="site-footer">
+  <div class="measure footer-grid">
+    <div>
+      <p class="footer-heading">{{ site.title }}</p>
+      <p>{{ site.description }}</p>
+    </div>
+    <div>
+      <p class="footer-heading">Explore</p>
+      <p><a href="{{ '/archive/' | relative_url }}">Archive</a> · <a href="{{ '/topics/' | relative_url }}">Topics</a> · <a href="{{ '/search/' | relative_url }}">Search</a></p>
+    </div>
+    <div>
+      <p class="footer-heading">Contact</p>
+      <p><a href="{{ '/contact/' | relative_url }}">Start a conversation</a></p>
+    </div>
+  </div>
+  <div class="measure footer-meta">
+    <small>Copyright © {{ 'now' | date: '%Y' }} {{ site.title }}. All rights reserved.</small>
   </div>
 </footer>
 {% if site.enable_anchorjs %}<!-- AnchorJS -->
@@ -9,36 +23,8 @@
   anchors.options.visible = 'always';
   anchors.add('article h2, article h3, article h4, article h5, article h6');
 </script>{% endif %}
-<script type="text/javascript">
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("{{ '/sw.js' | relative_url }}")
-  }
-</script>
 <script>
-  //open external links in a new window
-  function external_new_window() {
-    for (var c = document.getElementsByTagName("a"), a = 0; a < c.length; a++) {
-      var b = c[a];
-      if (b.getAttribute("href") && b.hostname !== location.hostname) {
-        b.target = "_blank";
-        b.rel = "noopener";
-      }
-    }
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("{{ '/sw.js' | relative_url }}");
   }
-  //open PDF links in a new window
-  function pdf_new_window() {
-    if (!document.getElementsByTagName) return false;
-    var links = document.getElementsByTagName("a");
-    for (var eleLink = 0; eleLink < links.length; eleLink++) {
-      if ((links[eleLink].href.indexOf('.pdf') !== -1) || (links[eleLink].href.indexOf('.doc') !== -1) || (links[eleLink].href.indexOf('.docx') !== -1)) {
-        links[eleLink].onclick =
-          function () {
-            window.open(this.href);
-            return false;
-          }
-      }
-    }
-  }
-  pdf_new_window();
-  external_new_window();
 </script>

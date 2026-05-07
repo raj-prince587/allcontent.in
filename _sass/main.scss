@@ -1,3 +1,33 @@
-.current {
-  color: green;
+:root {
+  --color-royal-blue: #0A4FD6;
+  --color-dark-navy: #031B4E;
+  --color-teal: #12C7B7;
+  --color-bg: #F7F9FC;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F1F5FB;
+  --color-border: rgba(3, 27, 78, 0.10);
+  --color-text: #1E325F;
+  --color-text-strong: #031B4E;
+  --color-text-soft: #5C6F97;
+  --color-shadow: 0 18px 45px rgba(10, 79, 214, 0.08);
+  --gradient-accent: linear-gradient(135deg, #0A4FD6 0%, #12C7B7 100%);
+  --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.16), transparent 38%), #FFFFFF;
+  --radius-card: 24px;
+  --radius-pill: 999px;
+  --space-section: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #071733;
+    --color-surface: #0B214D;
+    --color-surface-soft: #0E2A62;
+    --color-border: rgba(18, 199, 183, 0.18);
+    --color-text: #C8D7F4;
+    --color-text-strong: #F4F8FF;
+    --color-text-soft: #8FB0E2;
+    --color-shadow: 0 24px 50px rgba(0, 0, 0, 0.26);
+    --gradient-accent: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
+    --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.18), transparent 42%), #0B214D;
+  }
 }

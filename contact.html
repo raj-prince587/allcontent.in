@@ -1,45 +1,62 @@
 ---
 layout: page
-title: Contact Us
+title: Contact
 permalink: /contact/
 tags: contact
 ---
 
-<div class="py2">
+<div class="page-intro">
+  <p>{{ site.contact_intro }}</p>
+</div>
+
+<div class="page-shell">
+<div class="contact-card py2">
   {% if site.ajaxify_contact_form %}
-    <form class="form-stacked">
-      <label>
+    <form class="form-stacked contact-form" action="{{ site.formspree_endpoint }}" method="POST" novalidate>
+      <label for="contact-name">
+        Name
+        <input id="contact-name" type="text" name="name" class="field-light" placeholder="{{ site.text.contact.name }}" required>
+      </label>
+
+      <label for="contact-email">
         Email
-        <input type="text" name="email" class="field-light" placeholder="{{ site.text.contact.email | default: "Email Address" }}">
+        <input id="contact-email" type="email" name="email" class="field-light" placeholder="{{ site.text.contact.email }}" required autocomplete="email">
       </label>
 
-      <label>
-        Content
-        <textarea type="text" name="content" class="field-light" rows="5" placeholder="{{ site.text.contact.content | default: "What would you like to say?" }}" style="resize: vertical"></textarea>
+      <label for="contact-content">
+        Message
+        <textarea id="contact-content" name="message" class="field-light" rows="6" placeholder="{{ site.text.contact.content }}" style="resize: vertical" required></textarea>
       </label>
 
-      <input type="text" name="_gotcha" style="display:none" />
+      <input type="hidden" name="_subject" value="{{ site.text.contact.subject | default: 'New submission!' }}">
+      <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off">
 
-      <button type='submit' class="button button-blue button-big mobile-block">{{ site.text.contact.submit | default: "Say Hello" }}</button>
+      <button type="submit" class="button button-blue button-big mobile-block">{{ site.text.contact.submit }}</button>
+      <p class="form-status" aria-live="polite"></p>
     </form>
   {% else %}
-    <form action="https://formspree.io/{{ site.email }}" method="POST" class="form-stacked">
-      <label>
+    <form action="{{ site.formspree_endpoint }}" method="POST" class="form-stacked contact-form">
+      <label for="contact-name-fallback">
+        Name
+        <input id="contact-name-fallback" type="text" name="name" class="field-light" placeholder="{{ site.text.contact.name }}" required>
+      </label>
+      <label for="contact-email-fallback">
         Email
-        <input type="text" name="email" class="field-light" placeholder="{{ site.text.contact.email | default: "Email Address" }}">
+        <input id="contact-email-fallback" type="email" name="email" class="field-light" placeholder="{{ site.text.contact.email }}" required autocomplete="email">
       </label>
-      <label>
-        Content
-        <textarea type="text" name="content" class="field-light" rows="5" placeholder="{{ site.text.contact.content | default: "What would you like to say?" }}" style="resize: vertical"></textarea>
+      <label for="contact-content-fallback">
+        Message
+        <textarea id="contact-content-fallback" name="message" class="field-light" rows="6" placeholder="{{ site.text.contact.content }}" style="resize: vertical" required></textarea>
       </label>
 
-      <input type="hidden" name="_next" value="{{ site.baseurl }}/thanks/" />
-      <input type="hidden" name="_subject" value="{{ site.text.contact.subject | default: "New submission!" }}" />
-      <input type="text" name="_gotcha" style="display:none" />
+      <input type="hidden" name="_next" value="{{ '/thanks/' | absolute_url }}">
+      <input type="hidden" name="_subject" value="{{ site.text.contact.subject | default: 'New submission!' }}">
+      <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off">
 
-      <input type="submit" class="button button-blue button-big mobile-block" value="{{ site.text.contact.submit | default: "Say Hello" }}">
+      <input type="submit" class="button button-blue button-big mobile-block" value="{{ site.text.contact.submit }}">
     </form>
   {% endif %}
+</div>
 </div>
 
 {% if site.ajaxify_contact_form %}

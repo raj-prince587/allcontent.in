@@ -16,6 +16,7 @@ MIT License https://opensource.org/licenses/MIT
 html, body {
   height: auto;
   min-height: 100%;
+  background: var(--color-bg);
 }
 
 img {
@@ -28,7 +29,93 @@ em img {
 }
 
 body {
-          box-sizing: border-box;
-     -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top left, rgba(18, 199, 183, 0.08), transparent 28%),
+    linear-gradient(180deg, var(--color-bg) 0%, color-mix(in srgb, var(--color-bg) 88%, white 12%) 100%);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  transition: color .2s ease, opacity .2s ease, border-color .2s ease, background-color .2s ease;
+}
+
+main.wrap {
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+.measure {
+  width: 100%;
+}
+
+.page-intro {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 .75rem;
+  color: var(--color-royal-blue);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.topic-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.topic-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: .45rem .85rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-dark-navy);
+  font-size: .82rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.topic-chip:hover,
+.topic-chip:focus {
+  background: color-mix(in srgb, var(--color-teal) 14%, var(--color-surface));
+  color: var(--color-dark-navy);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.page-shell > .post,
+.page-shell > .search-shell,
+.page-shell > .contact-card,
+.page-shell > .archive-list,
+.page-shell > .topic-section {
+  width: 100%;
 }

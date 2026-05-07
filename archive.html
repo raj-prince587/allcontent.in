@@ -1,0 +1,28 @@
+---
+layout: page
+title: Archive
+permalink: /archive/
+---
+
+<div class="page-intro">
+  <p>Browse every article published on {{ site.title }}.</p>
+</div>
+
+<div class="archive-list page-shell">
+  {% assign grouped_posts = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  {% for year in grouped_posts %}
+  <section class="archive-year page-panel">
+    <h2>{{ year.name }}</h2>
+    {% for post in year.items %}
+    <article class="archive-item">
+      {% if post.featured %}
+      <p class="featured-badge">{{ site.text.post.featured }}</p>
+      {% endif %}
+      <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <p class="post-summary">{{ post.summary | default: post.excerpt | strip_html | truncate: 170 }}</p>
+    </article>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>

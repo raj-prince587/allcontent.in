@@ -5,9 +5,10 @@ permalink: /about/
 tags: about
 ---
 
-<h3>{{ site.author }}</h3>
-<p>
-Experienced e-commerce website developer with deep industry knowledge.
-Skilled in creating tailored, high-performing online shopping platforms to drive
-business growth and enhance user experience.
-</p>
+## {{ site.author }}
+
+{{ site.author_role }} based in {{ site.author_location }}.
+
+{{ site.author_bio }}
+
+This blog focuses on practical implementation guidance rather than generic opinion pieces. The goal is to publish concise, useful articles that help merchants, operators, and development teams make better technical decisions.

@@ -1,12 +1,8 @@
 <div class="py2 post-footer">
-  <img src="{{ site.baseurl }}/assets/images/me.png" alt="Raj" class="avatar" />
+  <img src="{{ site.baseurl }}/assets/images/me.png" alt="{{ site.author }}" class="avatar" />
+  <p class="eyebrow">About the author</p>
   <h3>{{ site.author }}</h3>
-  <p>
-    Experienced e-commerce website developer with deep industry knowledge.
-    Skilled in creating tailored, high-performing online shopping platforms to drive
-    business growth and enhance user experience.
-  </p>
-  <!-- <p>
-    Follow him on <a href="https://twitter.com/4lpine">Twitter</a>.
-  </p> -->
+  <p class="post-footer-role">{{ site.author_role }}</p>
+  <p>{{ site.author_bio }}</p>
+  <p><a href="{{ '/about/' | relative_url }}">Read the full profile</a> · <a href="{{ '/contact/' | relative_url }}">Get in touch</a></p>
 </div>

@@ -2,14 +2,30 @@ html {
   font-size: $base-font-size;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: var(--color-text-strong);
+  letter-spacing: -.03em;
+}
+
 abbr {
   border-bottom: $abbr-border-bottom;
   cursor: help;
 }
 
 p {
-  color: #333;
-  line-height: 1.5;
+  color: var(--color-text);
+  line-height: 1.7;
 }
 
 small,
@@ -21,4 +37,10 @@ sup {
   position: relative;
   vertical-align: middle;
   top: -0.9ex;
+}
+
+.post-intro,
+.home-intro {
+  font-size: 1.1rem;
+  color: var(--color-text-soft);
 }

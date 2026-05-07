@@ -1,0 +1,71 @@
+---
+layout: page
+title: Search
+permalink: /search/
+---
+
+<div class="page-intro">
+  <p>Search the article library by title, summary, category, or tag.</p>
+</div>
+
+<div class="page-shell">
+  <div class="search-shell">
+    <label for="site-search" class="search-label">{{ site.text.search.title }}</label>
+    <input id="site-search" class="field-light search-input" type="search" placeholder="Search articles">
+    <p id="search-status" class="post-meta">{{ site.text.search.empty }}</p>
+    <div id="search-results" class="post-grid"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var input = document.getElementById('site-search');
+    var results = document.getElementById('search-results');
+    var status = document.getElementById('search-status');
+    var emptyMessage = {{ site.text.search.empty | jsonify }};
+    var noneMessage = {{ site.text.search.none | jsonify }};
+    var featuredLabel = {{ site.text.post.featured | jsonify }};
+
+    function render(items) {
+      if (!items.length) {
+        results.innerHTML = '';
+        status.textContent = noneMessage;
+        return;
+      }
+
+      status.textContent = items.length + ' result' + (items.length === 1 ? '' : 's');
+      results.innerHTML = items.map(function (item) {
+        return '<article class="post-card">' +
+          (item.featured ? '<p class="featured-badge">' + featuredLabel + '</p>' : '') +
+          (item.category ? '<p class="eyebrow">' + item.category + '</p>' : '') +
+          '<p class="post-meta">' + item.date + '</p>' +
+          '<h3><a href="' + item.url + '">' + item.title + '</a></h3>' +
+          '<p class="post-summary">' + item.summary + '</p>' +
+          '</article>';
+      }).join('');
+    }
+
+    fetch('{{ "/search.json" | relative_url }}')
+      .then(function (response) { return response.json(); })
+      .then(function (data) {
+        input.addEventListener('input', function () {
+          var query = input.value.trim().toLowerCase();
+
+          if (!query) {
+            results.innerHTML = '';
+            status.textContent = emptyMessage;
+            return;
+          }
+
+          var matches = data.filter(function (item) {
+            return item.searchable.indexOf(query) !== -1;
+          });
+
+          render(matches);
+        });
+      })
+      .catch(function () {
+        status.textContent = 'Search is temporarily unavailable.';
+      });
+  })();
+</script>

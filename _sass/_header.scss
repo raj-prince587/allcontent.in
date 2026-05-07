@@ -1,25 +1,92 @@
 .site-header {
-  padding-top: $space-1;
-  padding-bottom: $space-2;
+  position: relative;
+  z-index: 20;
+  padding-top: .35rem;
+  padding-bottom: .35rem;
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--color-surface) 84%, transparent);
+  border-bottom: $header-border-top;
+}
+
+.site-header .measure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 30;
+  padding: .75rem 1rem;
+  border-radius: 999px;
+  background: #15231b;
+  color: #fff;
 }
 
 .site-header a {
   color: $header-color;
-  font-size: $h3;
+  font-size: 1rem;
   font-weight: $header-font-weight;
   background-image: none;
+  text-decoration: none;
+}
+
+.site-branding {
+  max-width: 28rem;
+  text-align: center;
 }
 
 .site-header .site-title {
-  font-size: $h2;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-tagline {
+  margin: .5rem 0 0;
+  color: var(--color-text-soft);
+  font-size: .84rem;
+}
+
+.site-logo {
+  display: block;
+  width: auto;
+  max-width: 160px;
+  height: 30px;
 }
 
 .site-nav {
-  padding-top: $nav-padding;
+  padding-top: .1rem;
+}
+
+.site-header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+  width: 100%;
 }
 
 .site-header nav a {
-  color: $nav-color;
+  color: var(--color-text-soft);
+  padding-bottom: .1rem;
+  border-bottom: 2px solid transparent;
+  font-weight: 600;
+}
+
+.site-header .site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem 1rem;
+  text-align: center;
 }
 
 .site-header nav a:hover,
@@ -34,24 +101,10 @@
 }
 
 .site-header nav a.nav-active {
+  color: var(--color-text-strong);
   border-bottom: $nav-active-border-bottom;
 }
 
-.site-nav a + a {
-  margin-left: $nav-link-padding-x;
-}
-
-.site-header a:hover,
-.posts .post a:hover .post-meta,
-.posts .post a:hover .post-title,
-.posts .post a:hover .post-summary {
-  opacity: 0.88;
-}
-
 .site-header {
-  text-align: center;
-}
-
-.site-header .site-nav {
   text-align: center;
 }

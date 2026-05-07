@@ -1,42 +1,44 @@
 .pagination {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: center;
   font-size: 1rem;
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;
+  font-family: $font-family;
+  font-weight: 600;
   text-align: center;
 }
 
-.pagination a, .pagination .disabled {
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
+.pagination a,
+.pagination .disabled {
   transition: all 0.2s ease-in-out;
-  background: #fafafa;
-  border-radius: 0.1875em;
-  border: 1px solid #f3f3f3;
-  color: #333333;
-  padding: 1em 1.5em;
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-strong);
+  padding: .95rem 1.25rem;
+  box-shadow: 0 10px 24px rgba(10, 79, 214, 0.06);
 }
 
-.pagination .disabled, .pagination .pagination-meta {
-  opacity: 0.5;
+.pagination .disabled,
+.pagination .pagination-meta {
+  opacity: 0.56;
 }
 
 .pagination .pagination-meta {
+  grid-column: 1 / -1;
   overflow: hidden;
+  color: var(--color-text-soft);
 }
 
-.pagination a:hover, .pagination a:focus {
-  background: white;
-  color: #477dca;
+.pagination a:hover,
+.pagination a:focus {
+  background: color-mix(in srgb, var(--color-surface) 84%, rgba(18, 199, 183, .16));
+  color: var(--color-royal-blue);
 }
 
 .pagination a:active {
-  background: #f7f7f7;
-}
-
-.pagination .button {
-  font-size: 1rem;
-  font-weight: 300;
-  letter-spacing: 1px;
+  background: var(--color-surface-soft);
 }
 
 .button-disabled {

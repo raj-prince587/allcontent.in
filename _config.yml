@@ -1,14 +1,31 @@
 # Site settings
 title:       All Content
-email:       itspellcompany@gmail.com
-author:      Raj
-description: "Discover Endless Content Options with allcontent.in."
+email:       info@allcontent.in
+author:      Digital Team
+description: "Discover Endless Content Options with allcontent.in"
 baseurl:     ""
 url:         "https://allcontent.in"
+lang:        "en"
 date_format: "%b %-d, %Y"
 header_pages:
+ - archive.html
+ - topics.html
+ - search.html
  - about.md
  - contact.html
+
+tagline: "Actionable eCommerce, technology, and web operations insights."
+author_role: "eCommerce Developer and Technical Writer"
+author_bio: "Shares practical implementation notes on eCommerce platforms, infrastructure issues, and digital operations for teams that need reliable execution."
+author_location: "India"
+contact_intro: "Use the contact form for consulting, implementation, and technical collaboration inquiries."
+formspree_endpoint: "https://formspree.io/info@allcontent.in"
+brand_image: "/splash-512x512.png"
+featured_categories:
+  - Magento
+  - Adobe Commerce
+  - Domains
+  - Integrations
 
 # Google services
 google_verification:
@@ -20,14 +37,14 @@ google_tag_manager: GTM-P95XS3B3
 bing_verification:
 
 # Optional features
-animated:             true
+animated:             false
 show_related_posts:   true
 show_post_footers:    true
-show_social_icons:    false
+show_social_icons:    true
 ajaxify_contact_form: true
 enable_mathjax: false
 extended_fonts: false
-enable_anchorjs: false
+enable_anchorjs: true
 # Preview image for social media aka og:image and twitter:image
 post_preview_image: true
 
@@ -96,17 +113,25 @@ text:
     updated:        'Updated'
     minute_read:    'minute read'
     related_posts:  'Related Posts'
+    featured:       'Featured Article'
   index:
     coming_soon: 'Coming soon...'
+    latest: 'Latest Articles'
+    featured: 'Featured Insight'
   contact:
     email:    'Email Address'
-    content:  'What would you like to say?'
+    name:     'Full Name'
+    content:  'How can we help?'
     subject:  'New submission!'
-    submit:   'Submit'
+    submit:   'Send Message'
     ajax:
-      sending:  'sending..'
+      sending:  'Sending...'
       sent:     'Message sent!'
-      error:    'Error!'
+      error:    'There was a problem. Please try again.'
+  search:
+    title: 'Search Articles'
+    empty: 'Start typing to search the archive.'
+    none: 'No matching articles found.'
   thanks: 'Thanks for contacting us. We will reply as soon as possible.'
   og_locale: 'en_US'
 
