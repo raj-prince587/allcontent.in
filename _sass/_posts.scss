@@ -175,6 +175,19 @@
   background: rgba(10, 79, 214, 0.24);
 }
 
+.post-visual {
+  margin: 1.5rem 0 0;
+}
+
+.post-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
 .post-content {
   font-size: 1rem;
 }

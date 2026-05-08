@@ -7,7 +7,8 @@ tags: [Magento, Adobe Commerce, eCommerce, SaaS, PaaS]
 summary: A concise breakdown of Magento Open Source, Adobe Commerce On-Premises, Adobe Commerce Cloud, and Adobe Commerce as a Cloud Service, including ownership, hosting, and operational tradeoffs.
 meta_description: A concise breakdown of Magento Open Source, Adobe Commerce On-Premises, Adobe Commerce Cloud, and Adobe Commerce as a Cloud Service, including ownership, hosting, and operational tradeoffs.
 update_date: 2025-06-02 20:10:28
-image: /splash-512x512.png
+image: /assets/images/posts/magento-commerce-variants.svg
+image_alt: Four connected commerce platform models comparing open source, on-premises, cloud, and SaaS.
 featured: true
 ---
 
