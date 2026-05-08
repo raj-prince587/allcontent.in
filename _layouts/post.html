@@ -11,7 +11,7 @@ layout: default
   <header class="post-hero mb3">
     {% if page.categories and page.categories.size > 0 %}
     {% assign primary_category = page.categories | first %}
-    <p><a class="eyebrow" href="{{ '/category/' | append: primary_category | slugify | append: '/' | relative_url }}">{{ primary_category }}</a></p>
+    <p><a class="eyebrow" href="{{ '/category/' | append: primary_category | append: '/' | relative_url }}">{{ primary_category }}</a></p>
     {% endif %}
     <h1>{{ page.title }}</h1>
     {% assign post_summary = page.summary | default: page.excerpt | strip_html | normalize_whitespace %}
@@ -98,6 +98,11 @@ layout: default
             {% endfor %}
             {% if is_related %}
         <article class="related-card">
+          {% if post.image %}
+          <a class="post-card-media related-card-media" href="{{ post.url | relative_url }}" aria-label="{{ post.title | xml_escape }}">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: post.title | xml_escape }}" loading="lazy">
+          </a>
+          {% endif %}
           <p class="post-meta">{{ post.date | date: site.date_format }}</p>
           <h3><a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a></h3>
           <p class="post-summary">{{ post.summary | default: post.excerpt | strip_html | truncate: 150 }}</p>
@@ -110,6 +115,11 @@ layout: default
         {% assign fallback_posts = site.posts | where_exp: "post", "post.url != page.url" %}
         {% for post in fallback_posts limit:3 %}
         <article class="related-card">
+          {% if post.image %}
+          <a class="post-card-media related-card-media" href="{{ post.url | relative_url }}" aria-label="{{ post.title | xml_escape }}">
+            <img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: post.title | xml_escape }}" loading="lazy">
+          </a>
+          {% endif %}
           <p class="post-meta">{{ post.date | date: site.date_format }}</p>
           <h3><a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a></h3>
           <p class="post-summary">{{ post.summary | default: post.excerpt | strip_html | truncate: 150 }}</p>

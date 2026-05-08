@@ -104,6 +104,33 @@
   border-color: rgba(18, 199, 183, 0.28);
 }
 
+.post-card-media {
+  display: block;
+  margin: -1.4rem -1.4rem 1rem;
+  overflow: hidden;
+  border-radius: var(--radius-card) var(--radius-card) 10px 10px;
+  background: var(--color-bg-soft);
+}
+
+.post-card-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform .22s ease;
+}
+
+.post-card:hover .post-card-media img,
+.archive-item:hover .post-card-media img,
+.related-card:hover .post-card-media img,
+.featured-post-card:hover .post-card-media img {
+  transform: scale(1.025);
+}
+
+.featured-post-media {
+  margin-bottom: 1.25rem;
+}
+
 .post-link .post-title,
 .post-card h3,
 .related-card h3,

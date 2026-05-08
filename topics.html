@@ -13,10 +13,15 @@ permalink: /topics/
   <h2>Categories</h2>
   {% for category in site.categories %}
   <div class="topic-group page-panel" id="{{ category[0] | slugify }}">
-    <h3><a href="{{ '/category/' | append: category[0] | slugify | append: '/' | relative_url }}">{{ category[0] }}</a></h3>
+    <h3><a href="{{ '/category/' | append: category[0] | append: '/' | relative_url }}">{{ category[0] }}</a></h3>
     <div class="topic-group-list">
       {% for post in category[1] %}
       <article class="archive-item">
+        {% if post.image %}
+        <a class="post-card-media archive-item-media" href="{{ post.url | relative_url }}" aria-label="{{ post.title | xml_escape }}">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: post.title | xml_escape }}" loading="lazy">
+        </a>
+        {% endif %}
         {% if post.featured %}
         <p class="featured-badge">{{ site.text.post.featured }}</p>
         {% endif %}
@@ -44,6 +49,11 @@ permalink: /topics/
     <div class="topic-group-list">
       {% for post in tag[1] %}
       <article class="archive-item">
+        {% if post.image %}
+        <a class="post-card-media archive-item-media" href="{{ post.url | relative_url }}" aria-label="{{ post.title | xml_escape }}">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: post.title | xml_escape }}" loading="lazy">
+        </a>
+        {% endif %}
         {% if post.featured %}
         <p class="featured-badge">{{ site.text.post.featured }}</p>
         {% endif %}
