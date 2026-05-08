@@ -37,7 +37,7 @@ permalink: /search/
       results.innerHTML = items.map(function (item) {
         return '<article class="post-card">' +
           (item.featured ? '<p class="featured-badge">' + featuredLabel + '</p>' : '') +
-          (item.category ? '<p class="eyebrow">' + item.category + '</p>' : '') +
+          (item.category ? '<p><a class="eyebrow" href="' + item.categoryUrl + '">' + item.category + '</a></p>' : '') +
           '<p class="post-meta">' + item.date + '</p>' +
           '<h3><a href="' + item.url + '">' + item.title + '</a></h3>' +
           '<p class="post-summary">' + item.summary + '</p>' +

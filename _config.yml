@@ -23,9 +23,9 @@ formspree_endpoint: "https://formspree.io/info@allcontent.in"
 brand_image: "/splash-512x512.png"
 featured_categories:
   - Magento
-  - Adobe Commerce
-  - Domains
-  - Integrations
+  - Adobe
+  - Commerce
+  - Domain
 
 # Google services
 google_verification:
@@ -141,11 +141,14 @@ redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
 permalink:    pretty
 paginate:     4
+category_path: category
+category_layout: category_index.html
 sass:
   style: compressed
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-category-pages
 # https://github.com/jekyll/jekyll/issues/2938
 exclude:
   - Gemfile

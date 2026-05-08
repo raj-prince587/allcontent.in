@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+{% assign category_posts = page.posts %}
+{% if paginator.posts %}
+  {% assign category_posts = paginator.posts %}
+{% endif %}
+
+<div class="page-shell">
+  <section class="page-panel category-hero">
+    <p class="eyebrow">Category</p>
+    <h1>{{ page.category }}</h1>
+    <p class="post-summary">
+      {% if paginator.total_posts %}
+        {{ paginator.total_posts }} articles filed under {{ page.category }}.
+      {% else %}
+        {{ page.total_posts }} articles filed under {{ page.category }}.
+      {% endif %}
+    </p>
+  </section>
+
+  <section class="category-list">
+    <div class="post-grid">
+      {% for post in category_posts %}
+      <article class="post-card">
+        {% if post.featured %}
+        <p class="featured-badge">{{ site.text.post.featured }}</p>
+        {% endif %}
+        <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+        <h2 class="h3"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        <p class="post-summary">{{ post.summary | default: post.excerpt | strip_html | truncate: 170 }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if paginator.total_pages and paginator.total_pages > 1 %}
+  <nav class="pagination clearfix mb1 mt4" aria-label="Category pagination">
+    <div class="left">
+      {% if paginator.previous_page %}
+      <a class="pagination-item" href="{{ paginator.previous_page_path | relative_url }}">{{ site.text.pagination.newer | default: "Newer" }}</a>
+      {% else %}
+      <span class="pagination-item disabled">{{ site.text.pagination.newer | default: "Newer" }}</span>
+      {% endif %}
+    </div>
+    <div class="right">
+      {% if paginator.next_page %}
+      <a class="pagination-item" href="{{ paginator.next_page_path | relative_url }}">{{ site.text.pagination.older | default: "Older" }}</a>
+      {% else %}
+      <span class="pagination-item disabled">{{ site.text.pagination.older | default: "Older" }}</span>
+      {% endif %}
+    </div>
+    <div class="pagination-meta">Page {{ paginator.page }} of {{ paginator.total_pages }}</div>
+  </nav>
+  {% endif %}
+</div>

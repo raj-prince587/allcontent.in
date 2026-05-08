@@ -13,7 +13,7 @@ permalink: /topics/
   <h2>Categories</h2>
   {% for category in site.categories %}
   <div class="topic-group page-panel" id="{{ category[0] | slugify }}">
-    <h3>{{ category[0] }}</h3>
+    <h3><a href="{{ '/category/' | append: category[0] | slugify | append: '/' | relative_url }}">{{ category[0] }}</a></h3>
     <div class="topic-group-list">
       {% for post in category[1] %}
       <article class="archive-item">

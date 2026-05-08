@@ -19,6 +19,10 @@ permalink: /archive/
       <p class="featured-badge">{{ site.text.post.featured }}</p>
       {% endif %}
       <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+      {% if post.categories and post.categories.size > 0 %}
+      {% assign primary_category = post.categories | first %}
+      <p><a class="eyebrow" href="{{ '/category/' | append: primary_category | slugify | append: '/' | relative_url }}">{{ primary_category }}</a></p>
+      {% endif %}
       <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
       <p class="post-summary">{{ post.summary | default: post.excerpt | strip_html | truncate: 170 }}</p>
     </article>

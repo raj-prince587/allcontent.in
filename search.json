@@ -8,6 +8,7 @@ layout: null
     "url": {{ post.url | relative_url | jsonify }},
     "date": {{ post.date | date: site.date_format | jsonify }},
     "category": {{ post.categories | first | default: "" | jsonify }},
+    "categoryUrl": {{ "/category/" | append: post.categories.first | slugify | append: "/" | relative_url | jsonify }},
     "featured": {{ post.featured | default: false | jsonify }},
     "summary": {{ post.summary | default: post.excerpt | strip_html | normalize_whitespace | truncate: 170 | jsonify }},
     "searchable": {{ post.title | append: " " | append: post.summary | append: " " | append: post.excerpt | append: " " | append: post.categories | append: " " | append: post.tags | strip_html | downcase | normalize_whitespace | jsonify }}
