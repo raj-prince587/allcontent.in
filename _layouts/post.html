@@ -20,9 +20,14 @@ layout: default
     {% endif %}
     <div class="post-meta-row">
       <span>{{ site.author }}</span>
-      <span>{{ page.date | date: site.date_format }}</span>
-      {% if page.update_date %}
-      <span>{{ site.text.post.updated | default: "Updated" }} {{ page.update_date | date: site.date_format }}</span>
+      <span>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.date_format }}</time>
+      </span>
+      {% if page.update_date and page.update_date != page.date %}
+      <span>
+        {{ site.text.post.updated | default: "Updated" }}
+        <time datetime="{{ page.update_date | date_to_xmlschema }}">{{ page.update_date | date: site.date_format }}</time>
+      </span>
       {% endif %}
       <span>
         {% if page.minutes %}
@@ -41,7 +46,10 @@ layout: default
     {% endif %}
     {% if page.image %}
     <figure class="post-visual">
-      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title | xml_escape }}" loading="eager">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title | xml_escape }}" loading="eager" width="1200" height="675">
+      {% if page.image_caption %}
+      <figcaption>{{ page.image_caption }}</figcaption>
+      {% endif %}
     </figure>
     {% endif %}
   </header>
@@ -56,6 +64,38 @@ layout: default
 
   {% if site.show_post_footers %}
     {% include post_footer.html %}
+  {% endif %}
+
+  {% assign current_index = nil %}
+  {% for post in site.posts %}
+    {% if post.url == page.url %}
+      {% assign current_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+  {% if current_index != nil %}
+    {% assign newer_index = current_index | minus: 1 %}
+    {% assign older_index = current_index | plus: 1 %}
+    {% assign newer_post = site.posts[newer_index] %}
+    {% assign older_post = site.posts[older_index] %}
+  {% endif %}
+
+  {% if newer_post or older_post %}
+  <nav class="post-nav" aria-label="Post navigation">
+    {% if newer_post %}
+    <a class="post-nav-card post-nav-newer" href="{{ newer_post.url | relative_url }}">
+      <span class="post-nav-label">Newer post</span>
+      <span class="post-nav-title">{{ newer_post.title }}</span>
+    </a>
+    {% else %}
+    <span class="post-nav-card post-nav-empty" aria-hidden="true"></span>
+    {% endif %}
+    {% if older_post %}
+    <a class="post-nav-card post-nav-older" href="{{ older_post.url | relative_url }}">
+      <span class="post-nav-label">Older post</span>
+      <span class="post-nav-title">{{ older_post.title }}</span>
+    </a>
+    {% endif %}
+  </nav>
   {% endif %}
 
   {% if site.disqus_shortname %}

@@ -20,6 +20,16 @@
   <meta name="description" content="{{ meta_description | xml_escape }}">
   <meta name="author" content="{{ site.author }}">
   <meta name="theme-color" content="#103a2b">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('site-theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      } catch (error) {}
+    })();
+  </script>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
   <link rel="manifest" type="application/manifest+json; charset=utf-8" href="{{ '/manifest.json' | relative_url }}">

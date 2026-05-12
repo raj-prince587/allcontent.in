@@ -62,6 +62,28 @@
   height: 30px;
 }
 
+.site-logo-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .site-logo-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .site-logo-dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .site-logo-light {
+    display: none;
+  }
+
+  :root:not([data-theme]) .site-logo-dark {
+    display: block;
+  }
+}
+
 .site-nav {
   padding-top: .1rem;
 }
@@ -72,6 +94,68 @@
   align-items: center;
   gap: .3rem;
   width: 100%;
+}
+
+.site-nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem 1rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  color: var(--color-text-strong);
+  cursor: pointer;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  border-color: color-mix(in srgb, var(--color-teal) 58%, var(--color-border));
+  background: color-mix(in srgb, var(--color-teal) 14%, var(--color-surface));
+  color: var(--color-text-strong);
+}
+
+.theme-toggle:active {
+  transform: scale(.96);
+}
+
+.theme-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke: currentColor;
+}
+
+.theme-toggle .theme-icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .theme-icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .theme-icon-moon {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle .theme-icon-sun {
+    display: none;
+  }
+
+  :root:not([data-theme]) .theme-toggle .theme-icon-moon {
+    display: block;
+  }
 }
 
 .site-header nav a {
@@ -95,14 +179,14 @@
 .site-header nav a.nav-active:hover,
 .site-header nav a.nav-active:focus,
 .site-header nav a.nav-active:active {
-  color: $nav-link-color;
+  color: var(--color-text-strong);
   opacity: 1;
-  border-bottom: $nav-link-border-bottom;
+  border-bottom-color: var(--color-teal);
 }
 
 .site-header nav a.nav-active {
   color: var(--color-text-strong);
-  border-bottom: $nav-active-border-bottom;
+  border-bottom-color: var(--color-teal);
 }
 
 .site-header {

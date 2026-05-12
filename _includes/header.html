@@ -4,14 +4,33 @@
       <a href="#main-content" class="skip-link">Skip to content</a>
       <div class="site-branding">
         <a href="{{ "/" | relative_url }}" class="site-title" aria-label="{{ site.title }} home">
-          <img src="{{ '/assets/images/logo-allcontent.png' | relative_url }}" alt="{{ site.title }}" class="site-logo">
+          <img src="{{ '/assets/images/logo-allcontent.png' | relative_url }}" alt="{{ site.title }}" class="site-logo site-logo-light">
+          <img src="{{ '/assets/images/logo-allcontent-dark.png' | relative_url }}" alt="" class="site-logo site-logo-dark" aria-hidden="true">
         </a>
         <!-- <p class="site-tagline">{{ site.tagline }}</p> -->
       </div>
       <div class="site-header-actions">
-        <nav class="site-nav" aria-label="Primary navigation">
-          {% include navigation.html %}
-        </nav>
+        <div class="site-nav-row">
+          <nav class="site-nav" aria-label="Primary navigation">
+            {% include navigation.html %}
+          </nav>
+          <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch theme">
+            <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.99 12.43A8.5 8.5 0 1 1 11.57 3.01 6.8 6.8 0 0 0 20.99 12.43Z"></path>
+            </svg>
+          </button>
+        </div>
         {% if site.show_social_icons %}
           {% include social_links.html %}
         {% endif %}
