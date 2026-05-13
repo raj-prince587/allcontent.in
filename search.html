@@ -18,102 +18,141 @@ permalink: /search/
 </div>
 
 <script>
-  (function () {
-    var input = document.getElementById('site-search');
-    var results = document.getElementById('search-results');
-    var status = document.getElementById('search-status');
-    var emptyMessage = {{ site.text.search.empty | jsonify }};
-    var noneMessage = {{ site.text.search.none | jsonify }};
-    var featuredLabel = {{ site.text.post.featured | jsonify }};
+(function () {
+  var input = document.getElementById('site-search');
+  var results = document.getElementById('search-results');
+  var status = document.getElementById('search-status');
+  var emptyMessage = {{ site.text.search.empty | jsonify }};
+  var noneMessage = {{ site.text.search.none | jsonify }};
+  var featuredLabel = {{ site.text.post.featured | jsonify }};
 
-    function safePath(value) {
-      return typeof value === 'string' && value.charAt(0) === '/' ? value : '#';
+  function safePath(value) {
+    return typeof value === 'string' && value.charAt(0) === '/' ? value : '#';
+  }
+
+  function clearResults() {
+    while (results.firstChild) {
+      results.removeChild(results.firstChild);
+    }
+  }
+
+  function appendTextElement(parent, tagName, className, text) {
+    var element = document.createElement(tagName);
+    if (className) {
+      element.className = className;
+    }
+    element.textContent = text || '';
+    parent.appendChild(element);
+    return element;
+  }
+
+  function render(items) {
+    clearResults();
+
+    if (!items.length) {
+      status.textContent = noneMessage;
+      return;
     }
 
-    function clearResults() {
-      while (results.firstChild) {
-        results.removeChild(results.firstChild);
+    status.textContent = items.length + ' result' + (items.length === 1 ? '' : 's');
+
+    items.forEach(function (item) {
+      var article = document.createElement('article');
+      article.className = 'post-card';
+
+      if (item.featured) {
+        appendTextElement(article, 'p', 'featured-badge', featuredLabel);
       }
-    }
 
-    function appendTextElement(parent, tagName, className, text) {
-      var element = document.createElement(tagName);
-      if (className) {
-        element.className = className;
-      }
-      element.textContent = text || '';
-      parent.appendChild(element);
-      return element;
-    }
-
-    function render(items) {
-      clearResults();
-
-      if (!items.length) {
-        status.textContent = noneMessage;
-        return;
+      if (item.category) {
+        var categoryWrapper = document.createElement('p');
+        var categoryLink = document.createElement('a');
+        categoryLink.className = 'eyebrow';
+        categoryLink.href = safePath(item.categoryUrl);
+        categoryLink.textContent = item.category;
+        categoryWrapper.appendChild(categoryLink);
+        article.appendChild(categoryWrapper);
       }
 
-      status.textContent = items.length + ' result' + (items.length === 1 ? '' : 's');
+      appendTextElement(article, 'p', 'post-meta', item.date);
 
-      items.forEach(function (item) {
-        var article = document.createElement('article');
-        article.className = 'post-card';
+      var heading = document.createElement('h3');
+      var link = document.createElement('a');
+      link.href = safePath(item.url);
+      link.textContent = item.title || '';
+      heading.appendChild(link);
+      article.appendChild(heading);
 
-        if (item.featured) {
-          appendTextElement(article, 'p', 'featured-badge', featuredLabel);
-        }
+      appendTextElement(article, 'p', 'post-summary', item.summary);
+      results.appendChild(article);
+    });
+  }
 
-        if (item.category) {
-          var categoryWrapper = document.createElement('p');
-          var categoryLink = document.createElement('a');
-          categoryLink.className = 'eyebrow';
-          categoryLink.href = safePath(item.categoryUrl);
-          categoryLink.textContent = item.category;
-          categoryWrapper.appendChild(categoryLink);
-          article.appendChild(categoryWrapper);
-        }
+  function debounce(fn, wait) {
+    var timeout;
+    return function () {
+      var ctx = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function () { fn.apply(ctx, args); }, wait);
+    };
+  }
 
-        appendTextElement(article, 'p', 'post-meta', item.date);
+  function loadScript(src, cb) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.onload = cb;
+    s.onerror = cb;
+    document.head.appendChild(s);
+  }
 
-        var heading = document.createElement('h3');
-        var link = document.createElement('a');
-        link.href = safePath(item.url);
-        link.textContent = item.title || '';
-        heading.appendChild(link);
-        article.appendChild(heading);
-
-        appendTextElement(article, 'p', 'post-summary', item.summary);
-        results.appendChild(article);
-      });
-    }
-
-    fetch('{{ "/search.json" | relative_url }}')
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error('Search index request failed');
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        input.addEventListener('input', function () {
-          var query = input.value.trim().toLowerCase();
-
-          if (!query) {
-            clearResults();
-            status.textContent = emptyMessage;
-            return;
-          }
-
-          var matches = data.filter(function (item) {
-            return item.searchable.indexOf(query) !== -1;
+  fetch('{{ "/search.json" | relative_url }}')
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('Search index request failed');
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      // load Fuse.js for fuzzy matching then wire up input with debounce
+      loadScript('https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js', function () {
+        try {
+          var fuse = new Fuse(data, {
+            keys: ['title', 'summary', 'category', 'searchable'],
+            threshold: 0.4,
+            ignoreLocation: true,
+            includeScore: true
           });
 
-          render(matches);
-        });
-      })
-      .catch(function () {
-        status.textContent = 'Search is temporarily unavailable.';
+          var onInput = debounce(function () {
+            var q = input.value.trim();
+            if (!q) {
+              clearResults();
+              status.textContent = emptyMessage;
+              return;
+            }
+
+            var fuseResults = fuse.search(q, { limit: 50 });
+            var items = fuseResults.map(function (r) { return r.item; });
+            render(items);
+          }, 300);
+
+          input.addEventListener('input', onInput);
+          input.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { input.value = ''; clearResults(); status.textContent = emptyMessage; }
+          });
+        } catch (err) {
+          // fallback to simple substring filter
+          input.addEventListener('input', debounce(function () {
+            var q = input.value.trim().toLowerCase();
+            if (!q) { clearResults(); status.textContent = emptyMessage; return; }
+            var matches = data.filter(function (item) { return item.searchable.indexOf(q) !== -1; });
+            render(matches);
+          }, 300));
+        }
       });
-  })();
+    })
+    .catch(function () {
+      status.textContent = 'Search is temporarily unavailable.';
+    });
+})();
 </script>

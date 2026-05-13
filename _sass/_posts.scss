@@ -24,6 +24,8 @@
 .home-main,
 .home-sidebar {
   min-width: 0;
+  display: grid;
+  gap: 1rem;
 }
 
 .home-hero {
@@ -238,6 +240,7 @@
 .post-footer {
   margin-top: 2rem;
   text-align: left;
+  padding: 20px;
 }
 
 .post-footer .avatar {
@@ -311,8 +314,8 @@
   margin-bottom: 1rem;
 }
 
-.archive-year > h2,
-.topic-section > h2 {
+.archive-year>h2,
+.topic-section>h2 {
   margin-bottom: .4rem;
 }
 
