@@ -4,6 +4,8 @@ All Content is a Jekyll-powered publishing site for practical eCommerce, technol
 
 ## Local Development
 
+Use the Ruby version in `.ruby-version` before installing dependencies.
+
 Install dependencies:
 
 ```bash

@@ -8,6 +8,40 @@ permalink: /topics/
   <p>Explore articles grouped by category and tag.</p>
 </div>
 
+{% if site.focus_categories and site.focus_categories.size > 0 %}
+<section class="topic-section page-shell">
+  <h2>Focus Areas</h2>
+  {% for focus_category in site.focus_categories %}
+  {% assign focus_count = 0 %}
+  <div class="topic-group page-panel" id="{{ focus_category | slugify }}">
+    <h3>{{ focus_category }}</h3>
+    <div class="topic-group-list">
+      {% for post in site.posts %}
+      {% if post.categories contains focus_category or post.tags contains focus_category %}
+      {% assign focus_count = focus_count | plus: 1 %}
+      <article class="archive-item">
+        {% if post.image %}
+        <a class="post-card-media archive-item-media" href="{{ post.url | relative_url }}" aria-label="{{ post.title | xml_escape }}">
+          <img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: post.title | xml_escape }}" loading="lazy">
+        </a>
+        {% endif %}
+        {% if post.featured %}
+        <p class="featured-badge">{{ site.text.post.featured }}</p>
+        {% endif %}
+        <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+      </article>
+      {% endif %}
+      {% endfor %}
+      {% if focus_count == 0 %}
+      <p class="post-summary">{{ site.text.index.coming_soon | default: "Coming soon..." }}</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
 {% if site.categories.size > 0 %}
 <section class="topic-section page-shell">
   <h2>Categories</h2>

@@ -72,7 +72,7 @@ task :undraft, :file do |t, args|
   end
 
   draft = "#{drafts_dir}/#{file}"
-  unless File.exists?(draft)
+  unless File.exist?(draft)
     abort "Draft does not exist: #{draft}"
   end
 

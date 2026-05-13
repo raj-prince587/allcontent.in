@@ -13,9 +13,9 @@ layout: default
     <h1>{{ page.category }}</h1>
     <p class="post-summary">
       {% if paginator.total_posts %}
-        {{ paginator.total_posts }} articles filed under {{ page.category }}.
+        {{ paginator.total_posts }} articles found under {{ page.category }}.
       {% else %}
-        {{ page.total_posts }} articles filed under {{ page.category }}.
+        {{ page.total_posts }} articles found under {{ page.category }}.
       {% endif %}
     </p>
   </section>

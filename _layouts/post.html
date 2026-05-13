@@ -73,10 +73,15 @@ layout: default
     {% endif %}
   {% endfor %}
   {% if current_index != nil %}
-    {% assign newer_index = current_index | minus: 1 %}
-    {% assign older_index = current_index | plus: 1 %}
-    {% assign newer_post = site.posts[newer_index] %}
-    {% assign older_post = site.posts[older_index] %}
+    {% assign last_post_index = site.posts.size | minus: 1 %}
+    {% if current_index > 0 %}
+      {% assign newer_index = current_index | minus: 1 %}
+      {% assign newer_post = site.posts[newer_index] %}
+    {% endif %}
+    {% if current_index < last_post_index %}
+      {% assign older_index = current_index | plus: 1 %}
+      {% assign older_post = site.posts[older_index] %}
+    {% endif %}
   {% endif %}
 
   {% if newer_post or older_post %}

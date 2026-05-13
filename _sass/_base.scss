@@ -13,7 +13,8 @@ MIT License https://opensource.org/licenses/MIT
 
 */
 
-html, body {
+html,
+body {
   height: auto;
   min-height: 100%;
   background: var(--color-bg);
@@ -82,7 +83,8 @@ main.wrap {
   padding: .45rem .85rem;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  // background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  background: var(--gradient-accent);
   color: var(--color-dark-navy);
   font-size: .82rem;
   font-weight: 600;
@@ -112,10 +114,10 @@ main.wrap {
   gap: 1.5rem;
 }
 
-.page-shell > .post,
-.page-shell > .search-shell,
-.page-shell > .contact-card,
-.page-shell > .archive-list,
-.page-shell > .topic-section {
+.page-shell>.post,
+.page-shell>.search-shell,
+.page-shell>.contact-card,
+.page-shell>.archive-list,
+.page-shell>.topic-section {
   width: 100%;
 }

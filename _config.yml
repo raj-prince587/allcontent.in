@@ -8,13 +8,20 @@ url:         "https://allcontent.in"
 lang:        "en"
 date_format: "%b %-d, %Y"
 header_pages:
- - archive.html
- - topics.html
- - search.html
  - about.md
- - contact.html
 
 tagline: "Actionable eCommerce, technology, and web operations insights."
+focus_categories:
+  - Technology
+  - eCommerce
+  - Education
+header_category_links:
+  - title: Technology
+    url: /category/Technology
+  - title: eCommerce
+    url: /category/eCommerce
+  - title: Education
+    url: /category/Education
 author_role: "eCommerce Developer and Technical Writer"
 author_bio: "Shares practical implementation notes on eCommerce platforms, infrastructure issues, and digital operations for teams that need reliable execution."
 author_location: "India"
@@ -22,10 +29,10 @@ contact_intro: "Use the contact form for consulting, implementation, and technic
 formspree_endpoint: "https://formspree.io/info@allcontent.in"
 brand_image: "/splash-512x512.png"
 featured_categories:
+  - Technology
+  - eCommerce
+  - Education
   - Magento
-  - Adobe
-  - Commerce
-  - Domain
 
 # Google services
 google_verification:
@@ -151,8 +158,16 @@ plugins:
   - jekyll-category-pages
 # https://github.com/jekyll/jekyll/issues/2938
 exclude:
+  - .bundle
+  - .github
+  - .gitignore
+  - .sass-cache
+  - .travis.yml
+  - appveyor.yml
+  - bin
   - Gemfile
   - Gemfile.lock
+  - LICENSE.txt
   - Rakefile
   - README.md
   - screenshot.png

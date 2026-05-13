@@ -2,9 +2,8 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
-gem "jekyll"
+ruby "3.2.3"
+
 gem "github-pages"
-gem "webrick"
-gem 'jekyll-paginate'
-gem 'jekyll-category-pages'
+gem "jekyll-category-pages", "~> 1.0"
+gem "webrick", "~> 1.8"

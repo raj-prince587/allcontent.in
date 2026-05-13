@@ -26,33 +26,81 @@ permalink: /search/
     var noneMessage = {{ site.text.search.none | jsonify }};
     var featuredLabel = {{ site.text.post.featured | jsonify }};
 
+    function safePath(value) {
+      return typeof value === 'string' && value.charAt(0) === '/' ? value : '#';
+    }
+
+    function clearResults() {
+      while (results.firstChild) {
+        results.removeChild(results.firstChild);
+      }
+    }
+
+    function appendTextElement(parent, tagName, className, text) {
+      var element = document.createElement(tagName);
+      if (className) {
+        element.className = className;
+      }
+      element.textContent = text || '';
+      parent.appendChild(element);
+      return element;
+    }
+
     function render(items) {
+      clearResults();
+
       if (!items.length) {
-        results.innerHTML = '';
         status.textContent = noneMessage;
         return;
       }
 
       status.textContent = items.length + ' result' + (items.length === 1 ? '' : 's');
-      results.innerHTML = items.map(function (item) {
-        return '<article class="post-card">' +
-          (item.featured ? '<p class="featured-badge">' + featuredLabel + '</p>' : '') +
-          (item.category ? '<p><a class="eyebrow" href="' + item.categoryUrl + '">' + item.category + '</a></p>' : '') +
-          '<p class="post-meta">' + item.date + '</p>' +
-          '<h3><a href="' + item.url + '">' + item.title + '</a></h3>' +
-          '<p class="post-summary">' + item.summary + '</p>' +
-          '</article>';
-      }).join('');
+
+      items.forEach(function (item) {
+        var article = document.createElement('article');
+        article.className = 'post-card';
+
+        if (item.featured) {
+          appendTextElement(article, 'p', 'featured-badge', featuredLabel);
+        }
+
+        if (item.category) {
+          var categoryWrapper = document.createElement('p');
+          var categoryLink = document.createElement('a');
+          categoryLink.className = 'eyebrow';
+          categoryLink.href = safePath(item.categoryUrl);
+          categoryLink.textContent = item.category;
+          categoryWrapper.appendChild(categoryLink);
+          article.appendChild(categoryWrapper);
+        }
+
+        appendTextElement(article, 'p', 'post-meta', item.date);
+
+        var heading = document.createElement('h3');
+        var link = document.createElement('a');
+        link.href = safePath(item.url);
+        link.textContent = item.title || '';
+        heading.appendChild(link);
+        article.appendChild(heading);
+
+        appendTextElement(article, 'p', 'post-summary', item.summary);
+        results.appendChild(article);
+      });
     }
 
     fetch('{{ "/search.json" | relative_url }}')
-      .then(function (response) { return response.json(); })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Search index request failed');
+        }
+        return response.json();
+      })
       .then(function (data) {
         input.addEventListener('input', function () {
           var query = input.value.trim().toLowerCase();
 
           if (!query) {
-            results.innerHTML = '';
+            clearResults();
             status.textContent = emptyMessage;
             return;
           }
