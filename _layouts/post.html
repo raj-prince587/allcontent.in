@@ -302,27 +302,37 @@ layout: default
         });
       });
 
-      var sideNav = document.querySelector('.post-side-nav');
-      if (!sideNav) return;
+      var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.post-side-nav a[href^="#"], .post-toc-inline a[href^="#"]'));
+      var headingMap = {};
 
-      var headingLinks = Array.prototype.slice.call(sideNav.querySelectorAll('a[href^="#"]'));
-      var trackedHeadings = headingLinks.map(function (link) {
+      tocLinks.forEach(function (link) {
         var id = decodeURIComponent(link.hash.slice(1));
         var heading = document.getElementById(id);
-        return heading ? { id: id, heading: heading, link: link } : null;
-      }).filter(Boolean);
+        if (!heading) return;
+
+        if (!headingMap[id]) {
+          headingMap[id] = { id: id, heading: heading, links: [] };
+        }
+        headingMap[id].links.push(link);
+      });
+
+      var trackedHeadings = Object.keys(headingMap).map(function (id) {
+        return headingMap[id];
+      });
 
       if (!trackedHeadings.length) return;
 
       function setActiveHeading(id) {
         trackedHeadings.forEach(function (item) {
           var isActive = item.id === id;
-          item.link.classList.toggle('is-active', isActive);
-          if (isActive) {
-            item.link.setAttribute('aria-current', 'location');
-          } else {
-            item.link.removeAttribute('aria-current');
-          }
+          item.links.forEach(function (link) {
+            link.classList.toggle('is-active', isActive);
+            if (isActive) {
+              link.setAttribute('aria-current', 'location');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
         });
       }
 
@@ -367,10 +377,11 @@ layout: default
         trackedHeadings.forEach(function (item) {
           observer.observe(item.heading);
         });
+      } else {
+        window.addEventListener('scroll', updateActiveHeading, { passive: true });
       }
 
       updateActiveHeading();
-      window.addEventListener('scroll', updateActiveHeading, { passive: true });
       window.addEventListener('resize', updateActiveHeading);
     })();
   </script>

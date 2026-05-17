@@ -251,6 +251,11 @@
   background: color-mix(in srgb, var(--color-surface) 92%, transparent);
 }
 
+.post-toc-inline {
+  max-height: min(18rem, calc(100vh - 1.5rem));
+  overflow-y: auto;
+}
+
 .post-toc-title {
   margin-bottom: .75rem;
   color: var(--color-text-strong);
@@ -271,6 +276,10 @@
 
 .post-toc a:hover,
 .post-toc a:focus {
+  color: var(--color-royal-blue);
+}
+
+.post-toc a.is-active {
   color: var(--color-royal-blue);
 }
 
@@ -419,14 +428,15 @@
 }
 
 .post-content table {
-  display: table;
+  display: block;
   width: 100%;
   margin: 1.5rem 0;
-  overflow: hidden;
+  overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: 12px;
   background: var(--color-surface);
   font-size: .9rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .post-content th,
@@ -440,6 +450,14 @@
   background: color-mix(in srgb, var(--color-teal) 10%, var(--color-surface));
   color: var(--color-text-strong);
   text-align: left;
+}
+
+.post-content table>thead,
+.post-content table>tbody,
+.post-content table>tfoot {
+  display: table;
+  width: 100%;
+  min-width: max-content;
 }
 
 .post-content blockquote {

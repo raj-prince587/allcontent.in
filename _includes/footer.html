@@ -31,6 +31,7 @@
 <script>
   (function () {
     var button = document.querySelector('.theme-toggle');
+    var themeColor = document.querySelector('meta[data-theme-color]');
     var root = document.documentElement;
     var storageKey = 'site-theme';
     var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
@@ -51,12 +52,19 @@
       button.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
     }
 
+    function updateThemeColor(theme) {
+      if (!themeColor) return;
+      themeColor.setAttribute('content', theme === 'dark' ? '#071733' : '#F7F9FC');
+    }
+
     function applyTheme(theme) {
       root.setAttribute('data-theme', theme);
       updateButton(theme);
+      updateThemeColor(theme);
     }
 
     updateButton(currentTheme());
+    updateThemeColor(currentTheme());
 
     if (button) {
       button.addEventListener('click', function () {
@@ -71,7 +79,9 @@
     if (darkQuery && darkQuery.addEventListener) {
       darkQuery.addEventListener('change', function () {
         if (!root.getAttribute('data-theme')) {
-          updateButton(systemTheme());
+          var theme = systemTheme();
+          updateButton(theme);
+          updateThemeColor(theme);
         }
       });
     }

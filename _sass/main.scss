@@ -11,6 +11,8 @@
   --color-text-strong: #031B4E;
   --color-text-soft: #5C6F97;
   --color-shadow: 0 18px 45px rgba(10, 79, 214, 0.08);
+  --color-bg-gradient-end: #FFFFFF;
+  --color-theme-browser: #F7F9FC;
   --gradient-accent: linear-gradient(135deg, #0A4FD6 0%, #12C7B7 100%);
   --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.16), transparent 38%), #FFFFFF;
   --radius-card: 24px;
@@ -29,6 +31,8 @@
     --color-text-strong: #F4F8FF;
     --color-text-soft: #8FB0E2;
     --color-shadow: 0 24px 50px rgba(0, 0, 0, 0.26);
+    --color-bg-gradient-end: #091C3D;
+    --color-theme-browser: #071733;
     --gradient-accent: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
     --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.18), transparent 42%), #0B214D;
   }
@@ -44,7 +48,9 @@
   --color-text-strong: #031B4E;
   --color-text-soft: #5C6F97;
   --color-shadow: 0 18px 45px rgba(10, 79, 214, 0.08);
-  --gradient-accent: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 100%);
+  --color-bg-gradient-end: #FFFFFF;
+  --color-theme-browser: #F7F9FC;
+  --gradient-accent: linear-gradient(135deg, #0A4FD6 0%, #12C7B7 100%);
   --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.16), transparent 38%), #FFFFFF;
 }
 
@@ -58,6 +64,8 @@
   --color-text-strong: #F4F8FF;
   --color-text-soft: #8FB0E2;
   --color-shadow: 0 24px 50px rgba(0, 0, 0, 0.26);
+  --color-bg-gradient-end: #091C3D;
+  --color-theme-browser: #071733;
   --gradient-accent: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
   --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.18), transparent 42%), #0B214D;
 }
