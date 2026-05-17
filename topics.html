@@ -2,6 +2,7 @@
 layout: page
 title: Topics
 permalink: /topics/
+wide: true
 ---
 
 <div class="page-intro">
@@ -13,7 +14,7 @@ permalink: /topics/
   <h2>Focus Areas</h2>
   {% for focus_category in site.focus_categories %}
   {% assign focus_count = 0 %}
-  <div class="topic-group page-panel" id="{{ focus_category | slugify }}">
+  <div class="topic-group" id="{{ focus_category | slugify }}">
     <h3>{{ focus_category }}</h3>
     <div class="topic-group-list">
       {% for post in site.posts %}
@@ -46,7 +47,7 @@ permalink: /topics/
 <section class="topic-section page-shell">
   <h2>Categories</h2>
   {% for category in site.categories %}
-  <div class="topic-group page-panel" id="{{ category[0] | slugify }}">
+  <div class="topic-group" id="{{ category[0] | slugify }}">
     <h3><a href="{{ '/category/' | append: category[0] | append: '/' | relative_url }}">{{ category[0] }}</a></h3>
     <div class="topic-group-list">
       {% for post in category[1] %}
@@ -78,7 +79,7 @@ permalink: /topics/
     {% endfor %}
   </div>
   {% for tag in site.tags %}
-  <div class="topic-group page-panel" id="tag-{{ tag[0] | slugify }}">
+  <div class="topic-group" id="tag-{{ tag[0] | slugify }}">
     <h3>{{ tag[0] }}</h3>
     <div class="topic-group-list">
       {% for post in tag[1] %}

@@ -2,6 +2,7 @@
 layout: page
 title: Archive
 permalink: /archive/
+wide: true
 ---
 
 <div class="page-intro">
@@ -11,7 +12,7 @@ permalink: /archive/
 <div class="archive-list page-shell">
   {% assign grouped_posts = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
   {% for year in grouped_posts %}
-  <section class="archive-year page-panel">
+  <section class="archive-year">
     <h2>{{ year.name }}</h2>
     {% for post in year.items %}
     <article class="archive-item">

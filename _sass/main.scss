@@ -13,6 +13,12 @@
   --color-shadow: 0 18px 45px rgba(10, 79, 214, 0.08);
   --color-bg-gradient-end: #FFFFFF;
   --color-theme-browser: #F7F9FC;
+  --button-bg: linear-gradient(135deg, #004BBF 0%, #00B9AA 100%);
+  --button-bg-hover: linear-gradient(135deg, #062140 0%, #004BBF 42%, #00B9AA 100%);
+  --button-text: #FFFFFF;
+  --button-border: rgba(0, 185, 170, 0.36);
+  --button-shadow: 0 16px 34px rgba(0, 75, 191, 0.24);
+  --button-glow: rgba(0, 185, 170, 0.34);
   --gradient-accent: linear-gradient(135deg, #0A4FD6 0%, #12C7B7 100%);
   --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.16), transparent 38%), #FFFFFF;
   --radius-card: 24px;
@@ -33,6 +39,12 @@
     --color-shadow: 0 24px 50px rgba(0, 0, 0, 0.26);
     --color-bg-gradient-end: #091C3D;
     --color-theme-browser: #071733;
+    --button-bg: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
+    --button-bg-hover: linear-gradient(135deg, #0E2A62 0%, #2D7BFF 46%, #12C7B7 100%);
+    --button-text: #F8FBFF;
+    --button-border: rgba(18, 199, 183, 0.34);
+    --button-shadow: 0 18px 42px rgba(45, 123, 255, 0.28);
+    --button-glow: rgba(143, 176, 226, 0.32);
     --gradient-accent: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
     --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.18), transparent 42%), #0B214D;
   }
@@ -50,6 +62,12 @@
   --color-shadow: 0 18px 45px rgba(10, 79, 214, 0.08);
   --color-bg-gradient-end: #FFFFFF;
   --color-theme-browser: #F7F9FC;
+  --button-bg: linear-gradient(135deg, #004BBF 0%, #00B9AA 100%);
+  --button-bg-hover: linear-gradient(135deg, #062140 0%, #004BBF 42%, #00B9AA 100%);
+  --button-text: #FFFFFF;
+  --button-border: rgba(0, 185, 170, 0.36);
+  --button-shadow: 0 16px 34px rgba(0, 75, 191, 0.24);
+  --button-glow: rgba(0, 185, 170, 0.34);
   --gradient-accent: linear-gradient(135deg, #0A4FD6 0%, #12C7B7 100%);
   --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.16), transparent 38%), #FFFFFF;
 }
@@ -66,6 +84,12 @@
   --color-shadow: 0 24px 50px rgba(0, 0, 0, 0.26);
   --color-bg-gradient-end: #091C3D;
   --color-theme-browser: #071733;
+  --button-bg: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
+  --button-bg-hover: linear-gradient(135deg, #0E2A62 0%, #2D7BFF 46%, #12C7B7 100%);
+  --button-text: #F8FBFF;
+  --button-border: rgba(18, 199, 183, 0.34);
+  --button-shadow: 0 18px 42px rgba(45, 123, 255, 0.28);
+  --button-glow: rgba(143, 176, 226, 0.32);
   --gradient-accent: linear-gradient(135deg, #2D7BFF 0%, #12C7B7 100%);
   --gradient-surface: radial-gradient(circle at top right, rgba(18, 199, 183, 0.18), transparent 42%), #0B214D;
 }
