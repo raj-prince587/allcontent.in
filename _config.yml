@@ -2,6 +2,7 @@
 title:       All Content
 email:       info@allcontent.in
 author:      Digital Team
+author_type: Organization
 description: "Discover Endless Content Options with allcontent.in"
 baseurl:     ""
 url:         "https://allcontent.in"
@@ -22,8 +23,8 @@ header_category_links:
     url: /category/eCommerce
   - title: Education
     url: /category/Education
-author_role: "eCommerce Developer and Technical Writer"
-author_bio: "Shares practical implementation notes on eCommerce platforms, infrastructure issues, and digital operations for teams that need reliable execution."
+author_role: "Technology and eCommerce Editorial Team"
+author_bio: "Publishes practical implementation notes on technology, eCommerce platforms, infrastructure issues, and digital operations for teams that need reliable execution."
 author_location: "India"
 contact_intro: "Use the contact form for consulting, implementation, and technical collaboration inquiries."
 formspree_endpoint: "https://formspree.io/info@allcontent.in"
@@ -89,35 +90,32 @@ telegram_username:
 vk_id:
 
 # Post sharing icons
-show_sharing_icons: false
-# Change to 'true' to enable individual icons
-share_facebook: false
-share_twitter: false
-share_googleplus: false
-share_linkedin: false
-share_digg: false
-share_tumblr: false
-share_reddit: false
-share_stumbleupon: false
-share_hackernews: false
+show_sharing_icons: true
+share_copy_link: true
+share_x: true
+share_linkedin: true
+share_whatsapp: true
 
 text:
   pagination:
     newer: 'Newer'
     older: 'Older'
   share_buttons:
-    text:         'Share this post!'
-    facebook:     'Share on Facebook'
-    twitter:      'Share on Twitter'
-    googleplus:   'Share on Google+'
+    text:         'Share this article'
+    copy:         'Copy link'
+    copied:       'Link copied.'
+    copy_error:   'Copy failed. Use the address bar instead.'
+    x:            'Share on X'
     linkedin:     'Share on LinkedIn'
-    digg:         'Share on Digg'
-    tumblr:       'Share on Tumblr'
-    reddit:       'Share on Reddit'
-    stumbleupon:  'Share on StumbleUpon'
-    hackernews:   'Share on Hacker News'
+    whatsapp:     'Share on WhatsApp'
   post:
     updated:        'Updated'
+    reviewed:       'Last reviewed'
+    on_this_page:   'ON THIS PAGE'
+    bookmark_page:  'Bookmark'
+    bookmark_hint:  'Press Ctrl+D to bookmark this page.'
+    bookmark_hint_mac: 'Press Command+D to bookmark this page.'
+    copy_page_link: 'Copy link'
     minute_read:    'minute read'
     related_posts:  'Related Posts'
     featured:       'Featured Article'

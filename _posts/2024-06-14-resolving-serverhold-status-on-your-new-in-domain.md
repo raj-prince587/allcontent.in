@@ -2,12 +2,14 @@
 layout:     post
 title:      Resolving the 'server hold' status on your new .in domain.
 date:       2024-07-03 04:45:29
-summary:    ServerHold is a status imposed by a domain registry, not the registrar, which removes the domain from the global DNS. Unlike issues managed through your registrar (e.g., domain expiration or renewal disputes), ServerHold is enforced at the registry level, meaning the domain is entirely deactivated until the issue is resolved. Websites, email services, or any services relying on the domain will cease to function, resulting in downtime and potential business disruption.
+summary:    ServerHold is a registry-level domain status that removes a domain from DNS until the underlying compliance, verification, or policy issue is resolved.
 categories: [Technology, Education]
 tags: [DNS, Domain, NIXI]
-meta_description: ServerHold is a status imposed by a domain registry, not the registrar, which removes the domain from the global DNS. Unlike issues managed through your registrar (e.g., domain expiration or renewal disputes), ServerHold is enforced at the registry level, meaning the domain is entirely deactivated until the issue is resolved. Websites, email services, or any services relying on the domain will cease to function, resulting in downtime and potential business disruption..
+meta_description: Learn what ServerHold means for a .in domain, why registries apply it, and the steps to restore DNS service.
 update_date: 2024-07-03 04:45:29
+reviewed_date: 2026-05-16
 image: /assets/images/posts/domain-serverhold.svg
+social_image: /assets/images/posts/domain-serverhold.png
 image_alt: Domain status dashboard showing a paused DNS route and registry review.
 ---
 

@@ -1,8 +1,13 @@
+{% assign post_author_name = page.author | default: site.author %}
+{% assign post_author_role = page.author_role | default: site.author_role %}
+{% assign post_author_bio = page.author_bio | default: site.author_bio %}
+{% assign post_author_avatar = page.author_image | default: site.author_image | default: '/assets/images/me.png' %}
+{% assign post_author_type = page.author_type | default: site.author_type | default: 'Organization' %}
 <div class="py2 post-footer">
-  <img src="{{ site.baseurl }}/assets/images/me.png" alt="{{ site.author }}" class="avatar" />
-  <p class="eyebrow">About the author</p>
-  <h3>{{ site.author }}</h3>
-  <p class="post-footer-role">{{ site.author_role }}</p>
-  <p>{{ site.author_bio }}</p>
+  <img src="{{ post_author_avatar | relative_url }}" alt="{{ post_author_name }}" class="avatar" />
+  <p class="eyebrow">{% if post_author_type == "Organization" %}About the publisher{% else %}About the author{% endif %}</p>
+  <h3>{{ post_author_name }}</h3>
+  <p class="post-footer-role">{{ post_author_role }}</p>
+  <p>{{ post_author_bio }}</p>
   <p><a href="{{ '/about/' | relative_url }}">Read the full profile</a> · <a href="{{ '/contact/' | relative_url }}">Get in touch</a></p>
 </div>
